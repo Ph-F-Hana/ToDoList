@@ -6,7 +6,7 @@
     endif;
     $login = mysqli_query($con, "SELECT Name FROM users WHERE Us_ID='".$_SESSION['id']."'");
     $userName = mysqli_fetch_array($login)['Name'];
-    $stmt = "SELECT post FROM users INNER JOIN user_post ON users.Us_ID=user_post.Us_ID INNER JOIN posts ON user_post.P_ID=posts.P_ID";
+    $stmt = "SELECT posts.P_ID, posts.post FROM users INNER JOIN user_post ON users.Us_ID=user_post.Us_ID INNER JOIN posts ON user_post.P_ID=posts.P_ID WHERE users.Us_ID='".$_SESSION['id']."'";
     $result = mysqli_query($con, $stmt) or die(mysqli_error($con));
 ?>
 <!DOCTYPE html>
@@ -22,40 +22,46 @@
 
     <div class="container">
         <div class="newTask">
-            <input type="text"/>
+        <form method="POST" action="add.php">
+            <input name="post" type="text"/>
             <span class="add">+</span>
+        </form>
         </div>
         <div class="content">
+            <input type="text" name="search" placeholder="Search">
             <span class="empty">Add New Task</span>
             <!-- <span class="task">
             <span class="delete"></span>
             </span> -->
         </div>
-    </div>
 
-    <?php
-        while($user_data = mysqli_fetch_array($result)):
-    ?>
-        <span class="task">
-            <?php echo  $user_data['post'] ?>
-            <span class="delete">Delete</span>
-        </span>
-    <?php
-        endwhile;
-
-    ?>
-    
-    <div class="task-stats">
-        <div class="counter">
-        Tasks <span>0</span>
+        <div class="content">
+        <?php
+            while($user_data = mysqli_fetch_array($result)):
+        ?>
+            <span class="task">
+                <?php echo  $user_data['post'] ?>
+                <a href="delete.php?id=<?php echo $user_data['P_ID'];?>"><span class="delete">Delete</span></a>
+            </span>
+        <?php
+            endwhile;
+        ?>
         </div>
-        <div class="completed">
-            Completed <span>0</span>
+        <div class="task-stats">
+            <div class="counter">
+            Tasks <span>0</span>
+            </div>
+            <div class="completed">
+                Completed <span>0</span>
+            </div>
         </div>
+
     </div>
-
-
     <script src="js/script.js"></script>
     <script src="js/sweetalert.min.js"></script>
 </body>
 </html>
+
+
+<!-- <div class="content">
+        <span class="task">test for test<span class="delete">Delete</span></span></div> -->

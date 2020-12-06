@@ -25,7 +25,7 @@ body
     position: relative;
 }
 
-.container .newTask input
+.container .newTask input, .content input
 {
     display: inline-block;
     padding: 10px 15px;
@@ -34,6 +34,12 @@ body
     width: calc(100% - 15px);
     color:  #fff;
     font-size: 20px;
+}
+.content input
+{
+    background-color: #fff;
+    margin-bottom: 3px;
+    width: 100%;
 }
 .container .newTask input:focus
 {
