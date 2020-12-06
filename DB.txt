@@ -1,0 +1,14 @@
+CREATE DATABASE todolist;
+CREATE TABLE users(Us_ID INT PRIMARY KEY AUTO_INCREMENT,
+                    Name VARCHAR(50) NOT NULL,
+                    Email VARCHAR(50) NOT NULL,
+                    Password VARCHAR(255) NOT NULL);
+
+CREATE TABLE posts(P_ID INT PRIMARY KEY AUTO_INCREMENT,
+                   Post VARCHAR(255) NOT NULL,
+                   Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP());
+
+CREATE TABLE user_post(Us_ID INT NOT NULL,
+                       P_ID INT NOT NULL,
+                       FOREIGN KEY (Us_ID) REFERENCES  users (Us_ID),
+                       FOREIGN KEY (P_ID) REFERENCES  posts (P_ID));
