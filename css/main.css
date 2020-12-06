@@ -52,6 +52,17 @@ after { clear: both; }
   height: 50px;
 }
 
+.login form input[type="text"] 
+{
+  background-color: #fff;
+  border: none; 
+  color: #141313;
+  margin-bottom: 1em;
+  padding: 0 16px;
+  width: 90%;
+  height: 50px;
+}
+
 .login form input[type="email"] 
 {
   background-color: #fff;
