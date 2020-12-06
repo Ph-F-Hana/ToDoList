@@ -1,14 +1,12 @@
 <?php
     session_start();
     require_once("config.php");
-    var_dump($_SESSION['id']);
-    //  && is_numeric($_SESSION['id'])
-    // if(!(isset($_SESSION['id']))):
-    //     header("Location: signIn.php");
-    // endif;
-    $login = mysqli_query($con, "SELECT name FROM users WHERE id='".$_SESSION['id']."'");
-    $userName = mysqli_fetch_array($login)['name'];
-    $stmt = "SELECT post FROM users INNER JOIN user_post ON usrs.Us_ID=user_post.Us_ID INNER JOIN posts ON user_post.P_ID=posts.P_ID";
+    if(!(isset($_SESSION['id'])) && is_numeric($_SESSION['id'])):
+        header("Location: signIn.php");
+    endif;
+    $login = mysqli_query($con, "SELECT Name FROM users WHERE Us_ID='".$_SESSION['id']."'");
+    $userName = mysqli_fetch_array($login)['Name'];
+    $stmt = "SELECT post FROM users INNER JOIN user_post ON users.Us_ID=user_post.Us_ID INNER JOIN posts ON user_post.P_ID=posts.P_ID";
     $result = mysqli_query($con, $stmt) or die(mysqli_error($con));
 ?>
 <!DOCTYPE html>

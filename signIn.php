@@ -7,7 +7,7 @@
         $user_data = mysqli_fetch_array($result);
         extract($user_data);
         if($Password === $lpassword):
-            $_SESSION['id'] = $id;
+            $_SESSION['id'] = $Us_ID;
             header("Location: index.php");
         else:
             $_SESSION['error'] = "email or password not valid";
