@@ -22,13 +22,13 @@
 
     <div class="container">
         <div class="newTask">
-        <form method="POST" action="add.php">
-            <input name="post" type="text"/>
-            <span class="add">+</span>
-        </form>
+            <form method="POST" action="add.php">
+                <input name="post" type="text"/>
+                <span class="add">+</span>
+            </form>
         </div>
         <div class="content">
-            <input type="text" name="search" placeholder="Search">
+            <input type="text" id="search" placeholder="Search">
             <span class="empty">Add New Task</span>
             <!-- <span class="task">
             <span class="delete"></span>
@@ -36,25 +36,28 @@
         </div>
 
         <div class="content">
-        <?php
-            while($user_data = mysqli_fetch_array($result)):
-        ?>
-            <span class="task">
-                <?php echo  $user_data['post'] ?>
-                <a href="delete.php?id=<?php echo $user_data['P_ID'];?>"><span class="delete">Delete</span></a>
-            </span>
-        <?php
-            endwhile;
-        ?>
+            <?php
+                while($user_data = mysqli_fetch_array($result)):
+            ?>
+                <span class="task">
+                    <?php echo  $user_data['post'] ?>
+                    <a href="delete.php?id=<?php echo $user_data['P_ID'];?>"><span class="delete">Delete</span></a>
+                    <a href="edit.php?id=<?php echo $user_data['P_ID'];?>"><span class="edit">Edit</span></a>
+                </span>
+            <?php
+                endwhile;
+            ?>
+        
         </div>
-        <div class="task-stats">
+
+        <!-- <div class="task-stats">
             <div class="counter">
             Tasks <span>0</span>
             </div>
             <div class="completed">
                 Completed <span>0</span>
             </div>
-        </div>
+        </div> -->
 
     </div>
     <script src="js/script.js"></script>

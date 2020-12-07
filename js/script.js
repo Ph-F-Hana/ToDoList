@@ -95,17 +95,56 @@
 document.querySelector("span.add").addEventListener("click", () => {
     document.forms[0].submit();
 })
-
-document.querySelector(`input[name="search"]`).addEventListener("keyup", () => {
-    let name = document.getElementById("name").value; //ahmed
+let xhr;
+document.getElementById("search").addEventListener("keyup", () => {
+    let search = document.getElementById("search").value; //ahmed
     xhr = new XMLHttpRequest();
     console.log(xhr, "xhr");
-    let data = "name=" + name; //name=ahmed 
-    xhr.open("POST", "name-suggestion.php", true);
+    let data = "search=" + search; //search = p
+    xhr.open("POST", "search.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(data);
+    // console.log(data);
+    // console.log(xhr.responseText);
+    // console.log(xhr.response)
     xhr.onreadystatechange = display_data;
+    // console.log(xhr.response);
     function display_data() { 
-          document.getElementById("suggestion").innerHTML = xhr.responseText;
+        let tasks = document.querySelectorAll(".task");
+        if(!document.getElementById("search").value == "")
+        {
+            for(it in tasks)
+            {
+                tasks[it].style.display = "none";
+            }
+        }
+        else
+        {
+            for(it in tasks)
+            {
+                tasks[it].style.display = "block";
+            }
+        }
+        let result = JSON.parse(xhr.response);
+        for(it in result)
+        {
+            console.log(result[it].id);
+            console.log(result[it].post);
+        }
+        console.log(result);
+        // document.getElementById("suggestion").innerHTML = "test for test";//xhr.responseText;
     }
+    
 });
+
+
+
+// const xhr = new XMLHttpRequest();
+// xhr.onload = function() {
+//     const serverResponse = document.getElementById("serverResponse");
+//     serverResponse.innnerHTML = this.responseText;
+// }
+
+// xhr.open("POST", "search.php");
+// xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// xhr.send("name=domenic&message=how's it going");
