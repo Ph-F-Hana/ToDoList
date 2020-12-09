@@ -63,11 +63,12 @@
             </div>
             
             <input id= "login_btn" type="submit" name="login" value="Login">
-            <input id= "signup_btn" type="submit" value="Sign Up">
+            <a href="signUp.php">
+                <input id= "signup_btn" type="button" value="Sign Up">
+            </a>
     
         </form>
     </div>
     <!-- <script src="js/script.js"> </script> -->
 </body>
 </html>
-

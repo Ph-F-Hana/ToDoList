@@ -49,6 +49,9 @@
             ?>
         
         </div>
+        <div class="content" id="show_search">
+        
+        </div>
 
         <!-- <div class="task-stats">
             <div class="counter">
@@ -58,6 +61,9 @@
                 Completed <span>0</span>
             </div>
         </div> -->
+        <form action="logout.php">
+            <input type="submit" value="Logout">
+        </form>
 
     </div>
     <script src="js/script.js"></script>

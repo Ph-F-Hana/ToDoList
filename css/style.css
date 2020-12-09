@@ -92,7 +92,7 @@ body
     margin-bottom: 10px;
 }
 
-.container .content .task .edit
+.container .content .task .edit, .container .content .searchtask .edit
 {
     float: right;
     background-color: #03A9FA;
@@ -104,7 +104,7 @@ body
     cursor: pointer;
     margin-right: 5px;
 }
-.container .content .task .delete
+.container .content .task .delete, .container .content .searchtask .delete
 {
     float: right;
     background-color: #E91E63;
@@ -165,4 +165,22 @@ body
 .task-stats .completed span
 {
     background-color: #03A9FA;
+}
+
+form input[type="submit"] 
+{
+  background: #723397;
+  border: 0;
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  margin-bottom: 5px;
+}
+
+form input[type="submit"]:hover 
+{
+  background: #5c4ca0;
 }

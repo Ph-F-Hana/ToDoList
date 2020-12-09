@@ -99,7 +99,7 @@ let xhr;
 document.getElementById("search").addEventListener("keyup", () => {
     let search = document.getElementById("search").value; //ahmed
     xhr = new XMLHttpRequest();
-    console.log(xhr, "xhr");
+    // console.log(xhr, "xhr");
     let data = "search=" + search; //search = p
     xhr.open("POST", "search.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -107,12 +107,39 @@ document.getElementById("search").addEventListener("keyup", () => {
     // console.log(data);
     // console.log(xhr.responseText);
     // console.log(xhr.response)
+    let result;
+    let container =  document.querySelector(".content#show_search");
+    // let mainSpan = document.createElement("span");          //create main span Element
+    // let deleteElement = document.createElement("span");     // Create delete button
+    // let editElement = document.createElement("span");     // Create delete button
+    // let text;    // Create main span text
+    // let deleteText = document.createTextNode("Delete");     // Create delete button
+    // let editText = document.createTextNode("Edit");     // Create delete button
     xhr.onreadystatechange = display_data;
-    // console.log(xhr.response);
     function display_data() { 
+        // console.log(JSON.parse(xhr.responseText)[0].post);
         let tasks = document.querySelectorAll(".task");
-        if(!document.getElementById("search").value == "")
+        if(document.getElementById("search").value.length > 0)
         {
+            console.log("inside if");
+            result = JSON.parse(xhr.responseText);
+            // console.log(result[0].post);
+            for(let it = 0; it < result.length; ++i)
+            {
+                console.log(result[it].post);
+                // text = document.createTextNode("hi philip"); 
+                // mainSpan.appendChild(text);                             //Add Text to main span
+                // mainSpan.className = "searchtask";                            //Add class to main span
+                // deleteElement.appendChild(deleteText);                  //Add Text to delete button
+                // deleteElement.className = "delete";  
+                // editElement.appendChild(editText);
+                // editElement.className = "edit";                         //Add class delete button
+                // mainSpan.appendChild(deleteElement);                    //Add delete button to Main span
+                // mainSpan.appendChild(editElement);                    //Add delete button to Main span
+                // container.appendChild(mainSpan);                        //Add task to container
+                container.appendChild(`${result[it].post}<a href="delete.php?id=${result[it].id}"><span class="delete">Delete</span></a>
+                <a href="edit.php?id=${result[it]}.id"><span class="edit">Edit</span></a>`)
+            }
             for(it in tasks)
             {
                 tasks[it].style.display = "none";
@@ -120,31 +147,29 @@ document.getElementById("search").addEventListener("keyup", () => {
         }
         else
         {
+            console.log("inside else");
             for(it in tasks)
             {
                 tasks[it].style.display = "block";
             }
-        }
-        let result = JSON.parse(xhr.response);
-        for(it in result)
-        {
-            console.log(result[it].id);
-            console.log(result[it].post);
-        }
-        console.log(result);
-        // document.getElementById("suggestion").innerHTML = "test for test";//xhr.responseText;
+        } 
     }
-    
 });
 
-
-
-// const xhr = new XMLHttpRequest();
-// xhr.onload = function() {
-//     const serverResponse = document.getElementById("serverResponse");
-//     serverResponse.innnerHTML = this.responseText;
-// }
-
-// xhr.open("POST", "search.php");
-// xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-// xhr.send("name=domenic&message=how's it going");
+// let container =  document.querySelector(".content#show_search");
+// let mainSpan = document.createElement("span");          //create main span Element
+// let deleteElement = document.createElement("span");     // Create delete button
+// let editElement = document.createElement("span");     // Create delete button
+// let text;    // Create main span text
+// let deleteText = document.createTextNode("Delete");     // Create delete button
+// let editText = document.createTextNode("Edit"); 
+// text = document.createTextNode("testfortest"); 
+// mainSpan.appendChild(text);                             //Add Text to main span
+// mainSpan.className = "searchtask";                            //Add class to main span
+// deleteElement.appendChild(deleteText);                  //Add Text to delete button
+// deleteElement.className = "delete";  
+// editElement.appendChild(editText);
+// editElement.className = "edit";                         //Add class delete button
+// mainSpan.appendChild(deleteElement);                    //Add delete button to Main span
+// mainSpan.appendChild(editElement);                    //Add delete button to Main span
+// container.appendChild(mainSpan); 
