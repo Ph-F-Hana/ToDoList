@@ -1,7 +1,8 @@
 <?php
     session_start();
     require_once("config.php");
-    if(!(isset($_SESSION['id'])) && is_numeric($_SESSION['id'])):
+    if(!(isset($_SESSION['id']))):
+    // if(!(isset($_SESSION['id'])) && is_numeric($_SESSION['id'])):
         header("Location: signIn.php");
     endif;
     $login = mysqli_query($con, "SELECT Name FROM users WHERE Us_ID='".$_SESSION['id']."'");
